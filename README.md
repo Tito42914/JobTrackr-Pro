@@ -24,11 +24,13 @@ Completed:
 - Added the first Tailwind styling pass to the applications list.
 - Connected application cards to dynamic detail routes.
 - Built the first application details page from typed starter data.
+- Added an edit route link and scaffolded the dynamic edit page.
+- Connected the project to GitHub and pushed the first checkpoint.
 
 Next:
 
-- Set up the GitHub repository and make a first project checkpoint.
-- Continue route flow with edit/create scaffolding.
+- Begin reusable application form work.
+- Continue create/edit route scaffolding.
 - Design the localStorage data flow.
 
 ## Planned Features
@@ -83,6 +85,7 @@ Current UI foundation:
 - `src/app/applications/page.tsx` renders the starter applications through typed components.
 - The applications page has an initial Tailwind layout and card styling pass.
 - `src/app/applications/[id]/page.tsx` displays details for a matching starter application.
+- `src/app/applications/[id]/edit/page.tsx` scaffolds the edit route for a matching starter application.
 
 ## Getting Started
 
