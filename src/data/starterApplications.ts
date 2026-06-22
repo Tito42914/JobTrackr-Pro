@@ -1,0 +1,40 @@
+import type { JobApplication } from "@/types/application";
+
+export const starterApplications: JobApplication[] = [
+    {
+        id: "starter-1",
+        company: "William Reed",
+        role: "Junior Software Engineer",
+        location: "London (hybrid)",
+        status: "applied",
+        dateApplied: "2026-04-17",
+        link: "",
+        notes: "Starter record migrated from the original JobTrackr project.",
+        createdAt: "2026-04-17T09:00:00.000Z",
+        updatedAt: "2026-04-17T09:00:00.000Z",
+    },
+    {
+        id: "starter-2",
+        company: "Motorola",
+        role: "Graduate Software Engineer",
+        location: "London (hybrid)",
+        status: "offer",
+        dateApplied: "2026-04-10",
+        link: "",
+        notes: "Starter record migrated from the original JobTrackr project.",
+        createdAt: "2026-04-10T09:00:00.000Z",
+        updatedAt: "2026-04-10T09:00:00.000Z",
+    },
+    {
+        id: "starter-3",
+        company: "F1",
+        role: "Junior Software Developer",
+        location: "London (on site)",
+        status: "interviewing",
+        dateApplied: "2026-04-01",
+        link: "",
+        notes: "Starter record migrated from the original JobTrackr project.",
+        createdAt: "2026-04-01T09:00:00.000Z",
+        updatedAt: "2026-04-01T09:00:00.000Z",
+    },
+];
