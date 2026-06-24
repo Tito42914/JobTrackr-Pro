@@ -26,11 +26,13 @@ Completed:
 - Built the first application details page from typed starter data.
 - Added an edit route link and scaffolded the dynamic edit page.
 - Connected the project to GitHub and pushed the first checkpoint.
+- Added a reusable application form shell.
+- Rendered the shared form on create and edit routes.
 
 Next:
 
-- Begin reusable application form work.
-- Continue create/edit route scaffolding.
+- Add initial values and controlled form state.
+- Wire create/edit submit behaviour.
 - Design the localStorage data flow.
 
 ## Planned Features
@@ -86,6 +88,7 @@ Current UI foundation:
 - The applications page has an initial Tailwind layout and card styling pass.
 - `src/app/applications/[id]/page.tsx` displays details for a matching starter application.
 - `src/app/applications/[id]/edit/page.tsx` scaffolds the edit route for a matching starter application.
+- `src/features/applications/components/ApplicationForm.tsx` provides the shared create/edit form shell.
 
 ## Getting Started
 

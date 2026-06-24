@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { starterApplications } from "@/data/starterApplications";
 import StatusBadge from "@/features/applications/components/StatusBadge";
+import ApplicationForm from "@/features/applications/components/ApplicationForm";
 
 type EditApplicationPageProps = {
     params: Promise<{
@@ -49,15 +50,8 @@ export default async function EditApplicationPage({
                         {application.company}
                     </p>
 
-                    <div className="mt-8 rounded-xl bg-slate-50 p-5">
-                        <h2 className="text-base font-semibold text-slate-950">
-                            Form coming next
-                        </h2>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">
-                            This page has found the correct application record. The editable
-                            form fields will be added in a later step when the application
-                            form component is built.
-                        </p>
+                    <div className="mt-8">
+                        <ApplicationForm mode="edit" />
                     </div>
                 </section>
             </div>
