@@ -28,10 +28,11 @@ Completed:
 - Connected the project to GitHub and pushed the first checkpoint.
 - Added a reusable application form shell.
 - Rendered the shared form on create and edit routes.
+- Refined the form layout and prefilled the edit form from starter data.
 
 Next:
 
-- Add initial values and controlled form state.
+- Add controlled form state.
 - Wire create/edit submit behaviour.
 - Design the localStorage data flow.
 
@@ -89,6 +90,7 @@ Current UI foundation:
 - `src/app/applications/[id]/page.tsx` displays details for a matching starter application.
 - `src/app/applications/[id]/edit/page.tsx` scaffolds the edit route for a matching starter application.
 - `src/features/applications/components/ApplicationForm.tsx` provides the shared create/edit form shell.
+- The edit route passes initial values into `ApplicationForm`; the next step is controlled form state.
 
 ## Getting Started
 

@@ -51,7 +51,18 @@ export default async function EditApplicationPage({
                     </p>
 
                     <div className="mt-8">
-                        <ApplicationForm mode="edit" />
+                        <ApplicationForm 
+                          mode="edit" 
+                          initialValues={{
+                            company: application.company,
+                            role: application.role,
+                            location: application.location,
+                            status: application.status,
+                            dateApplied: application.dateApplied,
+                            link: application.link,
+                            notes: application.notes,
+                          }}
+                        />
                     </div>
                 </section>
             </div>
