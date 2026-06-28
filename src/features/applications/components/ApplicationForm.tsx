@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import {
     APPLICATION_STATUSES,
     APPLICATION_STATUS_LABELS,
@@ -7,16 +10,49 @@ import type { JobApplicationInput } from "@/types/application";
 type ApplicationFormProps = {
     mode: "create" | "edit";
     initialValues?: JobApplicationInput;
+    onSubmit?: (formData: JobApplicationInput) => void;
+};
+
+const emptyFormValues: JobApplicationInput = {
+    company: "",
+    role: "",
+    location: "",
+    status: "applied",
+    dateApplied: "",
+    link: "",
+    notes: "",
 };
 
 export default function ApplicationForm({ 
     mode,
     initialValues,
+    onSubmit,
 }: ApplicationFormProps) {
     const submitLabel = mode === "create" ? "Add application" : "Save changes";
 
+    const [formData, setFormData] = useState<JobApplicationInput>(
+        initialValues ?? emptyFormValues
+    );
+
+    const handleChange = (
+        event: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    ) => {
+        const { name, value } = event.target;
+
+        setFormData((currentFormData) => ({
+            ...currentFormData,
+            [name]: value,
+        }));
+    };
+
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        onSubmit?.(formData);
+    };
+
     return (
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid gap-5 sm:grid-cols-2">
                 <div>
                     <label
@@ -29,7 +65,8 @@ export default function ApplicationForm({
                       id="company"
                       name="company"
                       type="text"
-                      defaultValue={initialValues?.company ?? ""}
+                      value={formData.company}
+                      onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                     />  
                 </div>
@@ -45,7 +82,8 @@ export default function ApplicationForm({
                       id="role"
                       name="role"
                       type="text"
-                      defaultValue={initialValues?.role ?? ""}
+                      value={formData.role}
+                      onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                     />
                 </div>
@@ -61,7 +99,8 @@ export default function ApplicationForm({
                       id="location"
                       name="location"
                       type="text"
-                      defaultValue={initialValues?.location ?? ""}
+                      value={formData.location}
+                      onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                     />
                 </div>
@@ -77,7 +116,8 @@ export default function ApplicationForm({
                       id="dateApplied"
                       name="dateApplied"
                       type="date"
-                      defaultValue={initialValues?.dateApplied ?? ""}
+                      value={formData.dateApplied}
+                      onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                     />
                 </div>
@@ -92,7 +132,8 @@ export default function ApplicationForm({
                     <select
                       id="status"
                       name="status"
-                      defaultValue={initialValues?.status ?? "applied"}
+                      value={formData.status}
+                      onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                     >
                         {APPLICATION_STATUSES.map((status) => (
@@ -114,7 +155,8 @@ export default function ApplicationForm({
                       id="link"
                       name="link"
                       type="url"
-                      defaultValue={initialValues?.link ?? ""}
+                      value={formData.link}
+                      onChange={handleChange}
                       className="mt-2 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                     />
                 </div>
@@ -132,7 +174,8 @@ export default function ApplicationForm({
                     id="notes"
                     name="notes"
                     rows={5}
-                    defaultValue={initialValues?.notes ?? ""}
+                    value={formData.notes}
+                    onChange={handleChange}
                     className="mt-2 w-full rounded-xl border border-slate-300 px-3 py-2 text-sm text-slate-950 shadow-sm outline-none transition focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20"
                 />
             </div>
