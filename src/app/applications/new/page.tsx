@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ApplicationForm from "@/features/applications/components/ApplicationForm";
+import NewApplicationForm from "@/features/applications/components/NewApplicationForm";
 
 export default function NewApplicationPage() {
     return (
@@ -27,7 +27,7 @@ export default function NewApplicationPage() {
                     </p>
 
                     <div className="mt-8">
-                        <ApplicationForm mode="create" />
+                        <NewApplicationForm />
                     </div>
                 </section>
             </div>

@@ -4,9 +4,13 @@ JobTrackr Pro is a frontend-first rebuild of the original React/Vite JobTrackr p
 
 The first version will use localStorage with starter data fallback. Authentication, database persistence, and other backend services are intentionally deferred until the frontend product and data model are established.
 
+## Project Links
+
+- GitHub: [Tito42914/JobTrackr-Pro](https://github.com/Tito42914/JobTrackr-Pro)
+
 ## Project Status
 
-JobTrackr Pro is currently in its foundation phase.
+JobTrackr Pro is currently in its frontend MVP workflow phase.
 
 Completed:
 
@@ -30,11 +34,19 @@ Completed:
 - Rendered the shared form on create and edit routes.
 - Refined the form layout and prefilled the edit form from starter data.
 - Converted the shared application form to controlled client-side state.
+- Added shared application state with a route-level provider.
+- Wired create and edit form submission through shared application state.
+- Added application details rendering from shared state.
+- Added localStorage persistence with starter data fallback.
+- Resolved the localStorage hydration mismatch using a client-safe provider boundary.
 
 Next:
 
-- Wire create/edit submit behaviour.
-- Design the localStorage data flow.
+- Add delete behaviour.
+- Add search and status filtering.
+- Build dashboard summary cards.
+- Build analytics summaries.
+- Polish validation, empty states, and final responsive presentation.
 
 ## Planned Features
 
@@ -71,7 +83,7 @@ Next:
 
 ## Architecture Direction
 
-The application will use a typed central application model and a single source of truth for application data. The planned data layer will begin with localStorage utilities and may be exposed through a custom `useApplications` hook.
+The application uses a typed central application model and a single source of truth for application data. The current data layer uses a custom `useApplications` hook, shared through an `ApplicationsProvider`, with localStorage persistence for the frontend MVP.
 
 The initial frontend architecture is intended to support a future backend without requiring the interface to be rebuilt. Deferred features include authentication, database integration, user accounts, API persistence, and server-side analytics.
 
@@ -92,6 +104,12 @@ Current UI foundation:
 - `src/features/applications/components/ApplicationForm.tsx` provides the shared create/edit form shell.
 - The edit route passes initial values into `ApplicationForm`.
 - `ApplicationForm` is now a Client Component with controlled state and an optional submit callback.
+- `useApplications` owns application state, create/update helpers, lookup helpers, and localStorage persistence.
+- `ApplicationsProvider` shares application state across the `/applications` route tree.
+- `NewApplicationForm` submits new applications into the shared in-memory state.
+- `EditApplicationForm` updates existing applications through shared state.
+- `ApplicationDetails` renders a selected application from shared state.
+- `ApplicationsProvider` includes a client-safe boundary to prevent server/client localStorage hydration mismatches.
 
 ## Getting Started
 

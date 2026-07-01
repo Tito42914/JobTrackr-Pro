@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { starterApplications } from "@/data/starterApplications";
-import ApplicationCard from "@/features/applications/components/ApplicationCard";
+import ApplicationsList from "@/features/applications/components/ApplicationsList";
 
 export default function ApplicationsPage() {
     return (
@@ -26,15 +25,8 @@ export default function ApplicationsPage() {
                         Add application
                     </Link>                    
                 </header>
-            
-                <section className="grid gap-4">
-                    {starterApplications.map((application) => (
-                        <ApplicationCard
-                          key={application.id}
-                          application={application}
-                        />
-                    ))}
-                </section>
+
+                <ApplicationsList />
             </div>
         </main>
     );
