@@ -76,6 +76,12 @@ export function useApplications() {
         );
     };
 
+    const deleteApplication = (id: string) => {
+        setApplications((currentApplications) =>
+          currentApplications.filter((application) => application.id !== id)
+        );
+    };
+
     const getApplicationById = (id: string) => {
         return applications.find((application) => application.id === id);
     };
@@ -84,6 +90,7 @@ export function useApplications() {
         applications,
         addApplication,
         updateApplication,
+        deleteApplication,
         getApplicationById,
     };
 }

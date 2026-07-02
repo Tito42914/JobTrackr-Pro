@@ -1,7 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import StatusBadge from "./StatusBadge";
 import { useApplicationsContext } from "../providers/ApplicationsProvider";
 
@@ -12,13 +13,34 @@ type ApplicationDetailsProps = {
 export default function ApplicationDetails({
     id,
 }: ApplicationDetailsProps) {
-    const { getApplicationById } = useApplicationsContext();
+    const { deleteApplication, getApplicationById } = useApplicationsContext();
+    const router = useRouter();
+
+    const [isDeleting, setIsDeleting] = useState(false);
 
     const application = getApplicationById(id);
 
     if (!application) {
+        if (isDeleting) {
+            return null;
+        }
+        
         notFound();
     }
+
+    const handleDelete = () => {
+        const confirmed = window.confirm(
+            "Are you sure you want to delete this application?"
+        );
+
+        if (!confirmed) {
+            return;
+        }
+
+        setIsDeleting(true);
+        deleteApplication(application.id);
+        router.push("/applications");
+    };
 
     return (
         <article className="mt-6 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
@@ -79,13 +101,22 @@ export default function ApplicationDetails({
                 </p>
             </section>
 
-            <div className="mt-8">
+            <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href={`/applications/${application.id}/edit`}
                   className="inline-flex rounded-full bg-blue-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-800"
                 >
                     Edit application
                 </Link>
+
+                <button
+                  type="button"
+                  onClick={handleDelete}
+                  disabled={isDeleting}
+                  className="inline-flex rounded-full border border-red-200 px-4 py-2 text-sm font-semibold text-red-700 transition hover:bg-red-50"
+                >
+                    {isDeleting ? "Deleting..." : "Delete application"}
+                </button>
             </div>
         </article>
     );

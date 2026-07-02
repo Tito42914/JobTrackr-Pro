@@ -39,11 +39,11 @@ Completed:
 - Added application details rendering from shared state.
 - Added localStorage persistence with starter data fallback.
 - Resolved the localStorage hydration mismatch using a client-safe provider boundary.
+- Added delete behaviour from the application detail page.
+- Added search and status filtering on the applications list.
 
 Next:
 
-- Add delete behaviour.
-- Add search and status filtering.
 - Build dashboard summary cards.
 - Build analytics summaries.
 - Polish validation, empty states, and final responsive presentation.
@@ -109,6 +109,8 @@ Current UI foundation:
 - `NewApplicationForm` submits new applications into the shared in-memory state.
 - `EditApplicationForm` updates existing applications through shared state.
 - `ApplicationDetails` renders a selected application from shared state.
+- `ApplicationDetails` can delete an application and redirect back to the list.
+- `ApplicationsList` supports local search and status filtering without changing the saved data.
 - `ApplicationsProvider` includes a client-safe boundary to prevent server/client localStorage hydration mismatches.
 
 ## Getting Started
